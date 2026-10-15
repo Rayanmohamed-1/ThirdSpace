@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Discover affordable community spaces, activities and places to connect in Cardiff.">
+
+    <title>Explore | ThirdSpace</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="topbar">
+
+        <a class="brand" href="/" aria-label="ThirdSpace home">
+            thirdspace<span class="brand-dot">.</span>
+        </a>
+
+        <nav aria-label="Main navigation">
+            <a class="nav-pill" href="/">Home</a>
+            <a class="nav-pill" href="/explore.html" aria-current="page">Explore</a>
+            <a class="nav-pill" href="/saved.html">Saved places ♡</a>
+        </nav>
+
+    </header>
+
+    <main id="main" class="discover">
+
+        <div class="section-head">
+
+            <div>
+                <p class="eyebrow">GET OUT THERE</p>
+
+                <h1>Find your next favourite spot.</h1>
+
+                <p>
+                    Real places in Cardiff, picked for curious afternoons and good company.
+                </p>
+            </div>
+
+        </div>
+
+        <form id="filters" class="filters" role="search">
+
+            <div class="field search-field">
+
+                <label for="search">Search places or activities</label>
+
+                <input
+                    type="search"
+                    id="search"
+                    name="q"
+                    placeholder="Try museum, park, café..."
+                    autocomplete="off"
+                >
+
+            </div>
+
+            <div class="field">
+
+                <label for="category">Type</label>
+
+                <select id="category" name="category">
+                    <option value="">All spaces</option>
+                    <option value="Outdoors">Outdoors</option>
+                    <option value="Arts &amp; culture">Arts &amp; culture</option>
+                    <option value="Museums">Museums</option>
+                </select>
+
+            </div>
+
+            <div class="field">
+
+                <label for="mood">Atmosphere</label>
+
+                <select id="mood" name="mood">
+                    <option value="">Any vibe</option>
+                    <option value="Relaxed">Relaxed</option>
+                    <option value="Social">Social</option>
+                    <option value="Creative">Creative</option>
+                    <option value="Quiet">Quiet</option>
+                </select>
+
+            </div>
+
+            <div class="field">
+
+                <label for="budget">Budget</label>
+
+                <select id="budget" name="budget">
+                    <option value="">Any budget</option>
+                    <option value="free">Free</option>
+                    <option value="under10">£10 or less (known prices only)</option>
+                    <option value="under20">£20 or less (known prices only)</option>
+                </select>
+
+            </div>
+
+            <button class="clear-btn" type="reset">
+                Clear
+            </button>
+
+        </form>
+
+        <div class="explore-layout">
+
+            <section aria-label="Explore places">
+
+                <div class="results-top">
+
+                    <p id="result-count" aria-live="polite">
+                        Finding places...
+                    </p>
+
+                    <button
+                        id="show-all"
+                        class="text-button"
+                        type="button"
+                    >
+                        Clear filters
+                    </button>
+
+                </div>
+
+                <div id="cards" class="cards">
+                    <p class="empty">Loading places...</p>
+                </div>
+
+            </section>
+
+            <aside class="map-panel" aria-label="Map of places">
+
+                <div class="map-head">
+
+                    <div>
+                        <h2>On the map</h2>
+                        <p>Markers match your search.</p>
+                    </div>
+
+                    <span class="map-icon" aria-hidden="true">↗</span>
+
+                </div>
+
+                <div id="map"></div>
+
+                <p class="map-tip">
+                    Select a marker to discover more about a place.
+                </p>
+
+            </aside>
+
+        </div>
+
+    </main>
+
+    <dialog id="place-dialog" aria-label="Place details">
+        <button type="button" class="dialog-close" data-close aria-label="Close place details">✕ Close</button>
+        <div id="place-detail"></div>
+    </dialog>
+
+    <footer class="simple-footer">
+
+        <a class="brand" href="/">
+            thirdspace<span class="brand-dot">.</span>
+        </a>
+
+        <p>Good places. Better connections.</p>
+
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="/js/app.js"></script>
+
+</body>
+
+</html>

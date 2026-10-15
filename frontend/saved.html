@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <title>Saved places | ThirdSpace</title>
+
+    <link rel="stylesheet" href="/css/style.css"/>
+</head>
+
+<body>
+
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="topbar">
+
+        <a class="brand" href="/" aria-label="ThirdSpace home">
+            thirdspace<span class="brand-dot">.</span>
+        </a>
+
+        <nav aria-label="Main navigation">
+
+            <a class="nav-pill" href="/">
+                Home
+            </a>
+
+            <a class="nav-pill" href="/explore.html">
+                Explore
+            </a>
+
+            <a class="nav-pill" href="/saved.html" aria-current="page">
+                Saved places ♡
+            </a>
+
+        </nav>
+
+    </header>
+
+    <main id="main">
+
+        <section class="saved-section">
+
+            <p class="eyebrow">KEEP THE GOOD ONES</p>
+
+            <h1>Your saved places</h1>
+
+            <p class="subheading">
+                All your favourite finds, in one little corner.
+            </p>
+
+            <div class="cards saved-grid" id="saved-cards"></div>
+
+            <div class="empty-state" id="saved-empty" hidden>
+
+                <span aria-hidden="true">♡</span>
+
+                <h2>Nothing saved yet.</h2>
+
+                <p>
+                    Find a place you love and tap the heart
+                    to keep it here.
+                </p>
+
+                <a class="primary-link" href="/explore.html">
+                    Explore spaces ↗
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer class="simple-footer">
+        <b>thirdspace.</b>
+    </footer>
+
+    <dialog id="place-dialog">
+
+        <button class="close" data-close="" type="button" aria-label="Close">
+
+        </button>
+
+        <div id="place-detail"></div>
+
+    </dialog>
+
+    <script src="/js/app.js" defer></script>
+
+</body>
+
+</html>
