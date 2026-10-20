@@ -1,57 +1,57 @@
-# ThirdSpace | Community Space Discovery Web Application
+# ThirdSpace | Community Space Discovery Platform
 
-**Finding somewhere to go shouldn't involve endless scrolling or spending a fortune.**
+ThirdSpace is a full-stack web application I developed to help young adults discover free and affordable community spaces across Cardiff. I wanted to bring information from different websites into one place, making it easier to find somewhere to socialise, relax or explore.
 
-ThirdSpace is an independent full-stack development project where I'm applying my software engineering skills to solve a real-world problem: making affordable community spaces easier to discover.
+## Problem & Product Vision
 
-I'm developing a responsive web application that helps young adults explore free and low-cost venues across Cardiff through search filters, interactive maps and saved favourites.
+Finding affordable activities can take time when venue information is scattered online. My vision is to make community spaces easier to discover, starting with Cardiff and potentially expanding to other UK cities.
 
-The current version features eight real venues across three categories: outdoors, arts and culture, and museums.
+## Business Analysis & User Requirements
 
-## Current Features
+I considered three potential stakeholder groups: young adults looking for places to visit, community organisations seeking visibility, and future platform administrators.
 
-- **Venue Discovery:** Browse real Cardiff venues with descriptions, locations and accessibility information.
-- **Search & Filtering:** Filter venues by keyword, category, atmosphere and budget.
-- **Interactive Map:** Explore venue locations using Leaflet.js, with markers that update alongside search results.
-- **Saved Places:** Save favourite venues without creating an account.
-- **Venue Details:** View additional information, directions and links to official websites.
-- **Responsive Design:** Explore the application across desktop, tablet and mobile devices.
+**Assumption-based persona - Amina, 21:** A Cardiff student who wants affordable activities but finds comparing venues across websites frustrating. This persona helped guide my design; it was not developed from user interviews.
 
-## Tech Stack
+**User story:** As a young adult, I want to search and filter affordable community spaces so that I can find places suited to my interests and budget.
 
-- **HTML5 & CSS3:** Responsive interface, website structure and styling.
-- **JavaScript:** Dynamic filtering, search functionality and interactive features.
-- **PHP 8.2 & MySQL 8:** API development, database integration and venue retrieval.
-- **Leaflet.js:** Interactive maps and venue markers.
-- **localStorage:** Persistent favourites on the same browser and device.
-- **Docker Compose:** Consistent local development environment.
+**Acceptance criteria:**
 
-## Challenges & Solutions
+- Keyword searches return matching venues.
+- Category, atmosphere and budget filters narrow the results.
+- Unsuccessful searches display a clear message.
 
-One of the main challenges was ensuring multiple search filters worked together accurately. I connected JavaScript to a PHP API that retrieves matching venues from MySQL and implemented request tracking to prevent outdated responses from overwriting newer results.
+## Features & Technical Implementation
 
-Another challenge was keeping the interactive map consistent with search results. I synchronised Leaflet markers with filtered venue data and added functionality to highlight selected locations.
+- **Search and filters:** JavaScript sends search criteria to a PHP API, which retrieves matching records from MySQL using PDO prepared statements.
+- **Interactive map:** Leaflet.js displays venue locations and updates markers alongside search results.
+- **Saved favourites:** Browser localStorage retains saved venue IDs without requiring accounts.
+- **Responsive interface:** HTML and CSS support different screen sizes.
 
-I also implemented persistent favourites using localStorage and handled missing venue prices appropriately, displaying "Prices vary" rather than presenting misleading information.
+I used Figma to create low and high fidelity wireframes, user journeys and interaction states. Docker Compose provides a consistent local development environment.
 
-These challenges have helped me strengthen my problem-solving skills and understand how frontend, backend and database technologies work together.
+## Venue Data & Sources
 
-## Run It Locally
+I populated the initial database with eight Cardiff venues using publicly available information. Sources include:
 
-**Requirements:** Docker Desktop and Docker Compose.
+- Bute Park: [https://bute-park.co.uk/directions/](https://bute-park.co.uk/directions/)
+- Chapter Arts Centre: [https://www.chapter.cymru/visit](https://www.chapter.cymru/visit)
+- Museum of Cardiff: [https://cardiffmuseum.com/contact-us/](https://cardiffmuseum.com/contact-us/)
+- Visit Cardiff: [https://www.visitcardiff.com/2026/01/free-things-to-do-in-cardiff/](https://www.visitcardiff.com/2026/01/free-things-to-do-in-cardiff/)
+- Norwegian Church: [https://www.norwegianchurchcardiff.com/](https://www.norwegianchurchcardiff.com/)
 
-1. Clone or download the repository.
-2. Start Docker Desktop.
-3. Open a terminal in the `ThirdSpace` project folder.
-4. Run:
+Prices and accessibility information may change; users should check official websites before visiting.
+
+## Run Locally
+
+With Docker Desktop running, open the project directory and execute:
 
 ```bash
 docker compose up --build -d
 ```
 
-Once the containers are running, open:
+Once running, access the application through:
 
-- **Home:** http://localhost:8080
+- **Homepage:** http://localhost:8080
 - **Explore:** http://localhost:8080/explore.html
 - **Saved Places:** http://localhost:8080/saved.html
 
@@ -61,67 +61,8 @@ To stop the application:
 docker compose down
 ```
 
-### Updating an Existing Installation
+## Limitations & Reflection
 
-If you previously ran an older version of ThirdSpace, Docker may retain the previous database volume.
+ThirdSpace is an ongoing MVP. It has eight seeded venues, no account-based favourites and no automated test suite or documented usability study. Future work includes expanding the directory, testing accessibility and collecting user feedback.
 
-After starting the containers, run the database migration:
-
-```bash
-docker compose exec -T db sh -c 'exec mysql -u"$MYSQL_USER" -p"$MYSQL_PASSWORD" "$MYSQL_DATABASE"' < backend/database/update_existing.sql
-```
-
-Back up important data before running migrations.
-
-**Important:** Avoid running `docker compose down -v` unless you intentionally want to delete the database volume and its stored data.
-
-## Venue Data & Sources
-
-ThirdSpace currently contains eight real Cardiff venues, using publicly available information from official websites and local listings.
-
-Sources include:
-
-- [Bute Park](https://bute-park.co.uk/directions/)
-- [Chapter Arts Centre](https://www.chapter.cymru/visit)
-- [Museum of Cardiff](https://cardiffmuseum.com/contact-us/)
-- [Visit Cardiff](https://www.visitcardiff.com/2026/01/free-things-to-do-in-cardiff/)
-- [Norwegian Church](https://www.norwegianchurchcardiff.com/)
-
-Venue coordinates are approximate. Admission prices, opening times and accessibility arrangements may change, so users should check official sources before visiting.
-
-Missing or variable prices are displayed as "Prices vary" rather than estimated amounts.
-
-## Security & Accessibility
-
-The PHP API uses PDO prepared statements for database queries, with server-side error logging and generic error responses.
-
-The frontend uses safe DOM text insertion when displaying venue information.
-
-Accessibility considerations include labelled form controls, descriptive buttons, keyboard focus indicators, a skip-navigation link and live result-count announcements.
-
-Further accessibility testing is planned.
-
-**Security note:** Database credentials in `docker-compose.yml` are intended for local development only. Credentials and deployment settings must be reviewed before making the application publicly accessible.
-
-The interactive map uses OpenStreetMap tiles through Leaflet.js, subject to the tile provider's usage and attribution requirements.
-
-## Limitations & Future Development
-
-ThirdSpace is an ongoing portfolio project. The current version focuses on venue discovery rather than social planning or event booking.
-
-As I continue developing the application, I plan to:
-
-- Expand the venue directory across Cardiff and potentially other cities.
-- Introduce community events, workshops and local activities.
-- Explore more personalised discovery based on users' interests.
-- Conduct usability testing and improve accessibility.
-- Investigate optional user accounts and cross-device favourites.
-- Improve how venue information is maintained and updated.
-
-## Project Reflection
-
-Developing ThirdSpace has given me the opportunity to apply my technical knowledge independently while exploring the relationship between software development, user experience and real-world problem-solving.
-
-Through this project, I'm strengthening my skills in full-stack development, database integration, analytical thinking and technical decision-making.
-
-ThirdSpace is an independent portfolio project and is not an official venue directory.
+This project strengthened my skills in SQL, API integration, UI/UX design and translating user needs into working features. It also helped me explore Business Analysis alongside software development.
